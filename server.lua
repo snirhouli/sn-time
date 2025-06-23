@@ -5,8 +5,8 @@ RegisterCommand("time", function(source, args, rawCommand)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
 
-    -- Check if player exists and is in the "legend" group
-    if Player and Player.PlayerData.group == "legend" then
+    -- Check if player exists and is in the "admin" group
+    if Player and Player.PlayerData.group == "admin" then
         local hour = tonumber(args[1])
         local minute = tonumber(args[2]) or 0
 
@@ -31,10 +31,10 @@ RegisterCommand("time", function(source, args, rawCommand)
         TriggerClientEvent('qb-weathersync:client:SyncTime', -1, hour, minute)
         TriggerClientEvent('chat:addMessage', -1, {
             color = {0, 255, 0},
-            args = {"Time System", "Time changed to " .. hour .. ":" .. string.format("%02d", minute) .. " by a Legend"}
+            args = {"Time System", "Time changed to " .. hour .. ":" .. string.format("%02d", minute) .. " by an Admin"}
         })
     else
-        -- Not in legend group
+        -- Not in admin group
         TriggerClientEvent('chat:addMessage', src, {
             color = {255, 0, 0},
             args = {"System", "You do not have permission to use this command."}
